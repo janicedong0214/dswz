@@ -19,7 +19,7 @@
         },
         methods: {
             ...mapActions('cart',[
-              'addProductToCart'  
+                'addProductToCart'  
             ])
         },
         created(){
