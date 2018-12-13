@@ -3,7 +3,7 @@
 export default {
     namespaced: true,
     state: {
-        item: [],
+        items: [],
         checkoutStatus: null
     },
     //getters
@@ -28,14 +28,14 @@ export default {
     //mutations
     mutations: {
         //1.添加产品到购物车
-        pushProduct (state, { id }) {
+        pushProductToCart (state, { id }) {
             state.items.push({
                 id,
                 quantity:1
             })
         },
         //2.添加购物车某产品数量
-        incrementItemNum(state, { id }){
+        incrementItemQuantity(state, { id }){
             const cartItem = state.items.find(item=>item.id === id)
             cartItem.quantity++;
         },
