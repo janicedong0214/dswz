@@ -5,7 +5,6 @@
             &nbsp;&nbsp;&nbsp;&nbsp;
             <button @click="addProductToCart(product)"> 加入购物车 </button>
         </li>
-        
     </ul>
 </template>
 

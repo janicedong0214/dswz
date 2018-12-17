@@ -1,29 +1,24 @@
 <template>
   <div id="app">
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/>
-    <Test :data="obj" ref="test"/> -->
-    <ProductsList/>
+    <router-link to="/">index</router-link>&nbsp;&nbsp;&nbsp;
+    <router-link to="/tab11">tab11</router-link>
+    <hr/>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld'
-// import Test from './components/Test'
-import ProductsList from './cart/ProductsList';
-export default {
-  name: 'app',
-  data() {
-    return {
-      obj: {
-        name:"dmm",
-        age:"10"
+  export default {
+    name: 'app',
+    data() {
+      return {
+        obj: {
+          name:"dmm",
+          age:"10"
+        }
       }
     }
-  },
-  components: {
-    ProductsList
   }
-}
 </script>
 
 <style>
@@ -33,6 +28,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  padding: 0;
+  margin: 0;
 }
 </style>
