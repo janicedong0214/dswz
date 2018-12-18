@@ -5,7 +5,7 @@
 </template>
 
 <script>
-    import getList from '../axios/index.js'
+    import getData from '../jsonp.js'
     export default {
         data() {
             return {
@@ -17,7 +17,7 @@
             }
         },
         created(){
-            getList();
+            getData();
             this.$loading.show('loading...');
             setTimeout(() => {
                 this.$loading.hide();
