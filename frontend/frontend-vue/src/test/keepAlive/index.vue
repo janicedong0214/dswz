@@ -5,7 +5,7 @@
 </template>
 
 <script>
-    import getData from '../jsonp.js'
+    // import getData from '../jsonp.js'
     export default {
         data() {
             return {
@@ -17,7 +17,7 @@
             }
         },
         created(){
-            getData();
+            // getData();
             this.$loading.show('loading...');
             setTimeout(() => {
                 this.$loading.hide();

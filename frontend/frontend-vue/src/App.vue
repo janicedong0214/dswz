@@ -1,7 +1,10 @@
 <template>
   <div id="app">
-    <router-link to="/">index</router-link>&nbsp;&nbsp;&nbsp;
-    <router-link to="/tab11">tab11</router-link>
+    <ul>
+      <li><router-link to="/">index</router-link></li>
+      <li><router-link to="/tab11">tab11</router-link></li>
+      <li><router-link to="/main">tab11</router-link></li>
+    </ul>
     <hr/>
     <router-view></router-view>
   </div>
@@ -22,13 +25,11 @@
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  padding: 0;
-  margin: 0;
-}
+    #app {
+        font-family: 'Avenir', Helvetica, Arial, sans-serif;
+        text-align: center;
+    }
+    li{
+        list-style: none;
+    }
 </style>
