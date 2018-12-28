@@ -5,7 +5,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 // import store from './store'
 // import loading from './test/plugins/loading'
 import router from './router'
-import jsonp from './assets/js/plugins/jsonp'
+import jsonp from './plugins/jsonp'
 
 
 Vue.config.productionTip = false

@@ -1,13 +1,8 @@
 <template>
     <div>
-        <button @click="getData2">click</button>
         <ul>
             <li v-for="(item,index) in detailSorts" :key="index">
-                <ul><!-- v-for="(itemB,index) in item.s" :key="index"-->
-                    <li v-for="(itemMin,index) in item" :key="index">
-                        {{ itemMin }}
-                    </li>
-                </ul>
+                <span v-for="(itemB,index) in item.s" :key="index"><i v-if="index>0">/</i>{{itemB.n | getTitle}}</span>
             </li>
         </ul>
     </div>
@@ -27,9 +22,10 @@
         },
         filters:{
             getTitle(value){
-                // console.log(value)
-                // let start = value.indexOf('|'),end = value.indexOf('||');
-                // return value.substring(start,end);
+                if(value.indexOf('|')){
+                    return value.split('|')[1].trim();
+                }
+                return '';
             }
         },
         methods: {

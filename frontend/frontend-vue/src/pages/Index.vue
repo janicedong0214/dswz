@@ -28,12 +28,33 @@
             <div class="banner">
                 <!-- 左侧详细导航 -->
                 <div class="leftNav">
-
+                    <ul>
+                        <li>
+                            <span><span>家用电器</span></span>
+                        </li>
+                        <!-- <li v-for="(item,index) in detailSorts" :key="index">
+                            <span v-for="(itemB,index) in item.s" :key="index">
+                                <i v-if="index>0" class="divideLine">/</i>
+                                <span>{{itemB.n | sortDetailTitle}}</span>
+                            </span>
+                        </li> -->
+                    </ul>
                 </div>
                 <!-- 中心轮播图 -->
-                <div class="goodsShow"></div>
+                <div class="goodsShow">
+                    <div>
+                        <img src="https://m.360buyimg.com/babel/jfs/t1/22949/14/3036/56494/5c23632aE9f6f0a67/19e3effbbe480803.jpg"/>
+                    </div>
+                    <ul>
+                        <li><a href="#"><img src="../assets/img/index1_1.jpg"/></a></li>
+                        <li><a href="#"><img src="../assets/img/index1_2.jpg"/></a></li>
+                        <li><a href="#"><img src="../assets/img/index1_3.jpg"/></a></li>
+                    </ul>
+                </div>
                 <!-- 其他个人操作 -->
-                <div class="personalOp"></div>
+                <div class="personalOp">
+
+                </div>
             </div>
         </div>
     </div>
@@ -45,12 +66,30 @@
         data() {
             return {
                 mainNavList: ['秒杀','优惠券','会员','闪购','拍卖','migo时尚','migo超市','海囤全球','xxjinrong'],
-                hotKeyWords:['好物好家电','米面杂粮','nova4','新年美妆','每99减100']
+                hotKeyWords:['好物好家电','米面杂粮','nova4','新年美妆','每99减100'],
+                detailSorts:[]
             }
         },
         mounted(){
-            
-        }
+            // this.getSortDetails();
+        },
+        filters:{
+            sortDetailTitle(value){
+                if(value.indexOf('|')){
+                    return value.split('|')[1].trim();
+                }
+                return '';
+            }
+        },
+        methods: {
+            getSortDetails() {//获取详细分类列表
+                this.$jsonp.http('https://dc.3.cn/category/get',"GBK",{
+                    callback:'callback'
+                }).then((res)=>{
+                    this.detailSorts = res.data;
+                })
+            }
+        },
     }
 </script>
 
@@ -70,6 +109,7 @@
         line-height: 190px;
         margin-top: -30px;
         box-shadow: 1px 1px 10px rgba(0,0,0,.1);
+        border-bottom: 1px solid rgba(181, 176, 176, 0.2);
     }
     .search{
         padding-top: 50px;
@@ -155,6 +195,7 @@
         color: #666;
         cursor: pointer;
         transition: all .2s;
+        font-size: 14px;
     }
     .mainNav>span:hover a{
         color: #e30000;
@@ -162,4 +203,46 @@
     .banner{
         height: 480px;
     }
+    .leftNav{
+        width: 190px;
+        background-color: #fff;
+    }
+    .banner .leftNav ul{
+        text-align: left;
+        padding-left: 10px;
+    }
+    .banner .leftNav li{
+        height: 26px;
+        line-height: 26px;
+    }
+    .banner .leftNav span{
+        color: #666;
+        display: inline-block;
+        cursor: pointer;
+        font-size: 14px;
+        transition: all .3s
+    }
+    .banner .leftNav span>span:hover{
+        color:#e30000;
+    }
+    .banner .leftNav i{
+        font-size: 14px;
+        padding: 0 2px;
+    }
+    .goodsShow{
+        display: flex;
+        padding: 10px;
+        cursor: pointer;
+    }
+    .goodsShow>ul{
+        margin-left: 10px;
+    }
+    .goodsShow>ul>li:hover img{
+        opacity: .8;
+    }
+    .goodsShow>ul>li img{
+        opacity: 1;
+        transition: all .3s;
+    }
+
 </style>

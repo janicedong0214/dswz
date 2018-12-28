@@ -56,12 +56,15 @@
       position: relative;
     }
     li{ list-style: none; }
-    ul{  margin: 0; }
+    ul{  margin: 0; padding: 0;}
     a{ text-decoration: none; color: #666;}
     .advertise{
       width: 100%;
       background-color: #221a55;
       transition: all;
+    }
+    i {
+      font-style: normal;
     }
     .advertise i{
       position: absolute;
