@@ -6,7 +6,7 @@
         <button @click="getVal">getData</button>
         <input v-model="data"/>
         <ul>
-            <li v-for="item in list">
+            <li v-for="(item,index) in list" :key="index">
                 {{ item.likes.color }}
             </li>
         </ul>
@@ -37,10 +37,6 @@
                     }
                 ]
             }
-        },
-        mounted(){
-            console.log(this.$refs)
-            // this.$refs.child.focus();
         },
         components:{
             Sub

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .rect {
+            width: 50px;
+            height: 50px;
+            background: #4dd0e1;
+        }
+    </style>
+</head>
+<body>
+        <!-- <form name="punchout_form" method="post" action="https://openapi.alipay.com/gateway.do?charset=UTF-8&method=alipay.trade.page.pay&sign=vwsSv6NPj3aJjDFk%2FDMpkKZ29Mvp9edZ5zmdWrKZI7MDf7jxxoc4Quc5D3wAyoqDg3z66kQleEp9P1LqpjRzbENmy7pXrzmTb%2BsbNapKyaVE%2FjZRXU718Xm0DayxmgH7fcVi%2FudvCQHnXjLzuY8LcNHgcM5b0FSCGHnGK8o8Krx4ukk%2FJsrb%2BEcN1ZaorfSN3t5Yj1HUFOcQVcq3zeBxtaoyke5W74BoUVDgxPavzWAT7oaQaq5UKIW3gFZCxlGvbiV%2Bh3%2Bn6W94dcnOxDpcOyOAHCp8FbVJPr6rPxDt6yd5%2FQywBpYeSEdy3%2FfuOGII0o5OfrjQuaC9PxpLKi49eA%3D%3D&return_url=http%3A%2F%2Flocalhost%3A8080%2Falipay.trade.wap.pay-JAVA-UTF-8%2Freturn_url.jsp&notify_url=http%3A%2F%2Flocalhost%3A8080%2Falipay.trade.wap.pay-JAVA-UTF-8%2Fnotify_url.jsp&version=1.0&app_id=2018122562638804&sign_type=RSA2&timestamp=2018-12-26+17%3A47%3A25&alipay_sdk=alipay-sdk-java-3.3.2&format=json">
+            <input type="hidden" name="biz_content" value="{&quot;out_trade_no&quot;:&quot;DSGC18121214&quot;,&quot;total_amount&quot;:&quot;523&quot;,&quot;subject&quot;:&quot;测试&quot;,&quot;body&quot;:&quot;&quot;,&quot;product_code&quot;:&quot;FAST_INSTANT_TRADE_PAY&quot;}">
+            <input type="submit" value="立即支付" style="" >
+        </form>
+        <script>
+            console.log(document.forms.punchout_form)
+            document.forms.submit();
+        </script> -->
+        <div id="app">
+                <transition
+                    name="showRect"
+                    @before-enter="handleBeforeEnter"
+                    @enter="handleEnter"
+                    @after-enter="handleAfterEnter"
+                    @before-leave="handleBeforeLeave"
+                    @leave="handleLeave"
+                    @after-leave="handleAfterLeave"
+                    :css="false"
+                >
+                    <div class="rect" v-show="show"></div>
+                </transition>
+                <button @click="handleClick">切换显示方块</button>
+            </div>
+            
+            <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16"></script>
+            <script src="http://cdn.jsdelivr.net/npm/velocity-animate@1.5.0/velocity.min.js"></script>
+            
+</body>
+<script>
+var vm = new Vue({
+    el: '#app',
+    data: {
+        // show状态决定方块是显示还是隐藏
+        show: true
+    },
+    methods: {
+        handleClick: function () {
+            this.show = !this.show;
+        },
+        handleBeforeEnter: function (el) {
+            el.style.opacity = 0;
+            console.log('方块显示动画即将执行');
+        },
+        handleEnter: function (el, done) {
+            Velocity(el, 'stop');
+            Velocity(el, {
+                backgroundColor: '#0085eb',
+                opacity: 1,
+                translateX: 260,
+                rotateZ: ['360deg', 0]
+            }, {
+                duration: 1000,
+                easing: [ 0.4, 0.01, 0.165, 0.99 ],
+                complete: done
+            });
+            console.log('方块显示动画执行中...');
+        },
+        handleAfterEnter: function (el) {
+            console.log('方块显示动画结束');
+        },
+        handleBeforeLeave: function (el) {
+            console.log('方块隐藏动画即将执行');
+        },
+        handleLeave: function (el, done) {
+            Velocity(el, 'stop');
+            Velocity(el, {
+                backgroundColor: '#4dd0e1',
+                opacity: 0,
+                translateX: 200,
+                rotateZ: [0, '360deg']
+            }, {
+                duration: 1000,
+                easing: [ 0.4, 0.01, 0.165, 0.99 ],
+                complete: done
+            });
+            console.log('方块隐藏动画执行中...');
+        },
+        handleAfterLeave: function (el) {
+            console.log('方块隐藏动画结束');
+        }
+    }
+});
+</script>
+</html>
