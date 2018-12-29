@@ -29,15 +29,15 @@
                 <!-- 左侧详细导航 -->
                 <div class="leftNav">
                     <ul>
-                        <!-- <li>
+                        <li>
                             <span><span>家用电器</span></span>
-                        </li> -->
-                        <li v-for="(item,index) in detailSorts" :key="index">
+                        </li>
+                        <!-- <li v-for="(item,index) in detailSorts" :key="index">
                             <span v-for="(itemB,index) in item.s" :key="index">
                                 <i v-if="index>0" class="divideLine">/</i>
                                 <span>{{itemB.n | sortDetailTitle}}</span>
                             </span>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
                 <!-- 中心轮播图 -->
@@ -58,7 +58,6 @@
                             <div class="swiper-button-next nextBtn iconfont icon-you"></div>
                         </swiper>
                     </div>
-                        
                     <ul>
                         <li><a href="#"><img src="../assets/img/index1_1.jpg"/></a></li>
                         <li><a href="#"><img src="../assets/img/index1_2.jpg"/></a></li>
@@ -67,11 +66,24 @@
                 </div>
                 <!-- 其他个人操作 -->
                 <div class="personalOp">
+                    <!--未登录-->
                     <div class="visitor">
                         <div class="photo"></div>
                         <p class="loginTip">Hi~欢迎来到京东！</p>
                         <p class="loginOrRegist"><span>登录</span><span>注册</span></p>
                         <p><button class="newWelfare">新人福利</button><button class="member">PLUS会员</button></p>
+                    </div>
+                    <!--登陆之后显示个人信息-->
+                    <div class="memberPanel"></div>
+                    <!--京东快报-->
+                    <div class="news">
+                        <p class="title"><span>京东快报</span><span>更多<i class="iconfont icon-zuojiantou"></i></span></p>
+                        <ul class="newsList">
+                            <li v-for="(item,index) in newsContext" :key="index" >
+                                <span class="newsType" :style="{backgroundColor:typeColors[index]}">{{ newsTypes[index] }}</span>
+                                <span class="newsContext">{{ item }}</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -87,6 +99,15 @@ export default {
       mainNavList: ["秒杀","优惠券","会员","闪购","拍卖","migo时尚","migo超市","海囤全球","xxjinrong"],
       hotKeyWords: ["好物好家电", "米面杂粮", "nova4", "新年美妆", "每99减100"],
       detailSorts: [],
+      newsTypes:['公告','活动','HOT','热门'],
+      newsContext:[
+          'VERTU官方旗舰店满100减99',
+          '美旅拉杆箱满299享受九折优惠',
+          'iPhone真香：从528',
+          'VERTU官方旗舰店满100减99'
+      ],
+      typeColors:['#90b0c6','#e0b95a','#e47f7f','#e47f7f'],
+      products:[],
       swiperOption: {
         clickable :true,
         autoplay: true,
@@ -110,7 +131,8 @@ export default {
     };
   },
   mounted() {
-    this.getSortDetails();
+    // this.getSortDetails();
+    // this.getNewsList();
   },
   filters: {
     sortDetailTitle(value) {
@@ -121,8 +143,8 @@ export default {
     }
   },
   methods: {
+    //获取详细分类列表
     getSortDetails() {
-      //获取详细分类列表
       this.$jsonp
         .http("https://dc.3.cn/category/get", "gbk", {
           callback: "callback"
@@ -130,6 +152,15 @@ export default {
         .then(res => {
           this.detailSorts = res.data;
         });
+    },
+    //获取新闻列表
+    getNewsList(){
+        this.$jsonp.http("https://floor.jd.com/recommend/news/get","utf-8",{
+            callback: "callback"
+        }).then(res => {
+            console.log(res)
+            // this.newsList = res
+        })
     }
   }
 };
@@ -364,6 +395,59 @@ export default {
 .member:hover,.newWelfare:hover{
     color:#fff;
     background-color: #e30000;
+}
+.news{
+    font-size: 12px;
+    margin-top: 10px;
+    
+}
+.news .title{
+    color:#666;
+    display: flex;
+    justify-content:space-between;
+    padding: 10px 20px;
+}
+.news .title>span:first-child{
+    font-weight: 700;
+    font-size: 14px;
+    color:#333;
+}
+.news .title>span{
+    cursor: pointer;
+}
+.news .title>span>i{
+    vertical-align: middle;
+}
+.news ul.newsList{
+    border-bottom: 1px solid rgba(200,200,200,.3);
+    padding-bottom: 20px;
+}
+.news ul.newsList>li{
+    line-height: 22px;
+    padding:0 5px;
+}
+.news ul.newsList>li span{
+    color: #666;
+    display: inline-block;
+    cursor: pointer;
+}
+.news ul.newsList>li .newsType{
+    padding: 0 10px;
+    border-radius: 2px;
+    background: #f00;
+    color: #fff;
+    height: 20px;
+    line-height: 20px;
+    display: inline-block;
+}
+.news ul.newsList>li .newsContext{
+    width: 125px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: middle;
+    text-align: left;
+    margin-left: 5px;
 }
 :global(.swiper-pagination-bullets .swiper-pagination-bullet){
     background: rgba(0,0,0,0);
