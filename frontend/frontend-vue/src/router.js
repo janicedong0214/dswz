@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Index from './pages/Index';
-import Test from './test/jsonp'
+import Cart from './pages/Cart';
 Vue.use(Router);
 
 export default new Router({
@@ -12,9 +12,9 @@ export default new Router({
             component:Index
         },
         {
-            path:'/test',
-            name:'test',
-            component:Test
+            path:'/cart',
+            name:'/cart',
+            component:Cart
         }
     ]
 })

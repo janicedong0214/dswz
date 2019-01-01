@@ -15,7 +15,7 @@
                             </div>
                         </div>
                         <!-- 购物车数量 -->
-                        <div class="shoppingCart">
+                        <div class="shoppingCart" @click="toMyCart">
                             <span><i class="iconfont icon-gouwuche1"></i>我的购物车<i class="goodsNum">0</i></span>
                         </div>
                     </div>
@@ -85,6 +85,15 @@
                             </li>
                         </ul>
                     </div>
+                    <!-- 小工具 -->
+                    <div class="toolsPanel">
+                        <!-- <div> -->
+                            <span v-for="(item,index) in toolsList" :key="index"><i class="['iconfont', item.icon]"></i>{{item.title}}</span>
+                        <!-- </div> -->
+                        <div class="detailInfo">
+                            vvvvvv
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -126,13 +135,35 @@ export default {
                 return '<span class="' + className + '"></span>';
             },
         },
-        
-      }
+      },
+      toolsList:[
+          {icon:'icon-ichuafei',title:'话费'},
+          {icon:'icon-jiudian',title:'酒店'},
+          {icon:'icon-jipiao',title:'机票'},
+          {icon:'icon-94',title:'游戏'},
+          {icon:'icon-dianyingpiaoiocn',title:'电影票'},
+          {icon:'icon-huochepiao',title:'火车票'},
+          {icon:'icon-lipin',title:'礼品卡'},
+          {icon:'icon-jiayouqia',title:'加油卡'},
+          {icon:'icon-web-icon-',title:'企业'},
+          {icon:'icon-38',title:'理财'},
+          
+          {icon:'icon-jingdongzhongchou',title:'众筹'},
+          
+          
+          {icon:'icon-baitiaoquxian',title:'白条'},
+      ]
     };
   },
   mounted() {
     // this.getSortDetails();
     // this.getNewsList();
+    var box = document.getElementsByClassName("indexContainer")[0];
+    var span = document.createElement('span');
+    console.log(box)
+    span.appendChild(document.createTextNode('Hello'));
+    span.id = "testSpan";
+    box.appendChild(span)
   },
   filters: {
     sortDetailTitle(value) {
@@ -143,6 +174,11 @@ export default {
     }
   },
   methods: {
+    //跳转到购物车
+    toMyCart(){
+        console.log(this)
+        this.$router.push('/cart');
+    },
     //获取详细分类列表
     getSortDetails() {
       this.$jsonp
@@ -165,8 +201,14 @@ export default {
   }
 };
 </script>
+<style>
+#testSpan{
+    color:#f00;
+}
+</style>
 
 <style scoped>
+
 .header,.banner {
   width: 1190px;
   margin: 0 auto;
@@ -420,7 +462,7 @@ export default {
 }
 .news ul.newsList{
     border-bottom: 1px solid rgba(200,200,200,.3);
-    padding-bottom: 20px;
+    padding-bottom: 12px;
 }
 .news ul.newsList>li{
     line-height: 22px;
@@ -449,12 +491,53 @@ export default {
     text-align: left;
     margin-left: 5px;
 }
-:global(.swiper-pagination-bullets .swiper-pagination-bullet){
+.toolsPanel{
+    padding-top:9px;
+    display:flex;
+    flex-wrap: wrap;
+    position: relative;
+    overflow: hidden;
+}
+.toolsPanel>.detailInfo{
+    height: 167px;
+    background: #f00;
+    position: absolute;
+    top: 167px;
+    width: 100%;
+}
+.toolsPanel span{
+    display: inline-block;
+    position: relative;
+    font-size: 12px;
+    color: #d3be9b;
+    padding-top: 16px;
+    margin-top: 12px;
+    flex: 0 0 25%;
+    cursor: pointer;
+}
+.toolsPanel span>i{
+    position: absolute;
+    left: 50%;
+    top: 0;
+    margin-left: -6px;
+}
+/* :global(.swiper-pagination-bullets .swiper-pagination-bullet){
     background: rgba(0,0,0,0);
     border: 2px solid rgba(255,255,255,.8);
 }
 :global(.swiper-pagination-bullets .swiper-pagination-bullet-active){
     box-shadow:1px 1px 10px #fff;
     background: rgba(255,255,255,.5);
+} */
+</style>
+<style>
+.swiper-pagination-bullets .swiper-pagination-bullet{
+    background: rgba(0,0,0,0) !important;
+    border: 2px solid rgba(255,255,255,.8) !important;
+    font-size: 20px;
+}
+.swiper-pagination-bullets .swiper-pagination-bullet-active{
+    box-shadow:1px 1px 10px #fff !important;
+    background: rgba(255,255,255,.5) !important;
 }
 </style>
