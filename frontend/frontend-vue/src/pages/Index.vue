@@ -88,7 +88,7 @@
                     <!-- 小工具 -->
                     <div class="toolsPanel">
                         <!-- <div> -->
-                            <span v-for="(item,index) in toolsList" :key="index"><i class="['iconfont', item.icon]"></i>{{item.title}}</span>
+                            <span v-for="(item,index) in toolsList" :key="index"><i :class="['iconfont', item.icon]"></i>{{item.title}}</span>
                         <!-- </div> -->
                         <div class="detailInfo">
                             vvvvvv
@@ -96,13 +96,20 @@
                     </div>
                 </div>
             </div>
+            <div>
+                <SecKill/>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
+import SecKill from '../components/index/Seckill'
 export default {
   name: "indexContainer",
+  components:{
+    SecKill
+  },
   data() {
     return {
       mainNavList: ["秒杀","优惠券","会员","闪购","拍卖","migo时尚","migo超市","海囤全球","xxjinrong"],
@@ -147,10 +154,7 @@ export default {
           {icon:'icon-jiayouqia',title:'加油卡'},
           {icon:'icon-web-icon-',title:'企业'},
           {icon:'icon-38',title:'理财'},
-          
           {icon:'icon-jingdongzhongchou',title:'众筹'},
-          
-          
           {icon:'icon-baitiaoquxian',title:'白条'},
       ]
     };
@@ -158,12 +162,6 @@ export default {
   mounted() {
     // this.getSortDetails();
     // this.getNewsList();
-    var box = document.getElementsByClassName("indexContainer")[0];
-    var span = document.createElement('span');
-    console.log(box)
-    span.appendChild(document.createTextNode('Hello'));
-    span.id = "testSpan";
-    box.appendChild(span)
   },
   filters: {
     sortDetailTitle(value) {

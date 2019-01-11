@@ -9,6 +9,7 @@ import jsonp from './plugins/jsonp'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.min.css'
 
+
 //elementUI组件测试
 // import Index from './test/elementUI/Index.vue'
 

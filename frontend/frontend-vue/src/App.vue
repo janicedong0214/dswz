@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <transition 
+    <ulNode/>
+    <!-- <transition 
       @leave="handleLeave"
       :css="false"
     >
@@ -12,11 +13,12 @@
     </transition>
     <Header/>
     <router-view/>
-    <Footer/>
+    <Footer/> -->
   </div>
 </template>
 
 <script>
+import ulNode from './render.js'
   import Header from '@/components/Header'
   import Footer from '@/components/Footer'
   import Velocity from 'velocity-animate'
@@ -24,7 +26,8 @@
     name: 'app',
     components:{
       Header,
-      Footer
+      Footer,
+      ulNode
     },
     data() {
       return {
