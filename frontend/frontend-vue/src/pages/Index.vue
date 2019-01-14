@@ -96,7 +96,8 @@
                     </div>
                 </div>
             </div>
-            <div>
+            <!--秒杀-->
+            <div class="seckill">
                 <SecKill/>
             </div>
         </div>
@@ -207,10 +208,13 @@ export default {
 
 <style scoped>
 
-.header,.banner {
+.indexContainer>div {
   width: 1190px;
   margin: 0 auto;
   display: flex;
+}
+.indexContainer>div+div{
+    margin-top:20px;
 }
 .header > .logo {
   width: 190px;

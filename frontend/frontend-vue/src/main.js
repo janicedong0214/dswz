@@ -8,7 +8,8 @@ import router from './router'
 import jsonp from './plugins/jsonp'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.min.css'
-
+import moment from 'moment'
+import utils from '@/assets/js/plugins/tools'
 
 //elementUI组件测试
 // import Index from './test/elementUI/Index.vue'
@@ -20,6 +21,8 @@ Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.use(jsonp)
 Vue.use(VueAwesomeSwiper)
+Vue.prototype.$moment = moment
+Vue.prototype.$utils = utils
 
 new Vue({
   // store,
