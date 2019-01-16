@@ -103,7 +103,7 @@
             </div>
             <!--新年特辑-->
             <div class="stockpile">
-
+                <Stockpile/>
             </div>
             <!--排行榜-->
             <div class="rankList">
