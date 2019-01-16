@@ -59,9 +59,9 @@
                         </swiper>
                     </div>
                     <ul>
-                        <li><a href="#"><img src="../assets/img/index1_1.jpg"/></a></li>
-                        <li><a href="#"><img src="../assets/img/index1_2.jpg"/></a></li>
-                        <li><a href="#"><img src="../assets/img/index1_3.jpg"/></a></li>
+                        <li><a href="#"><img src="@/assets/img/index1_1.jpg"/></a></li>
+                        <li><a href="#"><img src="@/assets/img/index1_2.jpg"/></a></li>
+                        <li><a href="#"><img src="@/assets/img/index1_3.jpg"/></a></li>
                     </ul>
                 </div>
                 <!-- 其他个人操作 -->
@@ -91,6 +91,7 @@
                             <span v-for="(item,index) in toolsList" :key="index"><i :class="['iconfont', item.icon]"></i>{{item.title}}</span>
                         <!-- </div> -->
                         <div class="detailInfo">
+                            <!--向上划箭头-->
                             vvvvvv
                         </div>
                     </div>
@@ -100,16 +101,28 @@
             <div class="seckill">
                 <SecKill/>
             </div>
+            <!--新年特辑-->
+            <div class="stockpile">
+
+            </div>
+            <!--排行榜-->
+            <div class="rankList">
+                <RankList/>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
 import SecKill from '../components/index/Seckill'
+import Stockpile from '../components/index/Stockpile'
+import RankList from '@/components/index/RankList'
 export default {
   name: "indexContainer",
   components:{
-    SecKill
+    SecKill,
+    Stockpile,
+    RankList
   },
   data() {
     return {

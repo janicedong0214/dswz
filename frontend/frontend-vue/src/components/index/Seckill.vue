@@ -11,31 +11,36 @@
         <!--轮播图-->
         <div class="secKillList">
             <swiper :options="swiperOption">
-                <swiper-slide>
-                    <div>11111111111111</div>
+                <swiper-slide v-for="(item,index) in productList" :key="index">
+                    <div class="productItem">
+                        <div class="productPic">
+                            <img src="@/assets/img/watch.jpg">
+                        </div>
+                        <div class="productPrice">
+                            <p>西铁城(CITIZEN)男表 男皮手表</p>
+                            <div>
+                                <span><i class="iconfont icon-renminbi"></i>6484.00</span>
+                                <span><i class="iconfont icon-renminbi"></i>6484.00</span>
+                            </div>
+                        </div>
+                    </div>
                 </swiper-slide>
-                <swiper-slide>
-                    <div>22222222222222</div>
-                </swiper-slide>
-                <swiper-slide>
-                    <div>33333333333</div>
-                </swiper-slide>
-                <swiper-slide>
-                    <div>44444445444</div>
-                </swiper-slide>
-                <swiper-slide>
-                    <div>555555555555</div>
-                </swiper-slide>
-                <swiper-slide>
-                    <div>666666666666</div>
-                </swiper-slide>
-                <!-- <div class="swiper-pagination" slot="pagination"></div> -->
-                <div class="swiper-button-prev prevBtn iconfont icon-zuo"></div>
-                <div class="swiper-button-next nextBtn iconfont icon-you"></div>
             </swiper>
+            <div class="swiper-button-prev prevBtn iconfont icon-zuo" @click="prevClick"></div>
+            <div class="swiper-button-next nextBtn iconfont icon-you" @click="nextClick"></div>
         </div>
         <!--其他-->
-        <div class="secKillOthers"></div>
+        <div class="secKillOthers">
+            <swiper :options="swiperOption1">
+                <swiper-slide v-for="i in 2" :key="i">
+                    <div class="otherItem">
+                        <img src="@/assets/img/bj.jpg">
+                    </div>
+                    <div class="secKillContainer-swiper-pagination" slot="pagination1"></div>
+                </swiper-slide>
+            </swiper>
+            
+        </div>
     </div>
 </template>
 
@@ -50,25 +55,69 @@
                 countDown:{hour:'00',minutes:'00',seconds:'00'},
                 swiperOption: {
                     clickable :true,
-                    // autoplay: true,
-                    slidesPerView: 3,
-                    slidesPerColumn: 1,
+                    slidesPerView: 4,//一页显示的个数
+                    slidesPerGroup:4,//一次滚动的个数
+                    slidesPerColumn: 1,//行数
                     direction: 'horizontal',
-                    fadeEffect: {//卡片淡入淡出
-                        crossFade: true,
-                    },
                     navigation: {//前后按钮
-                        nextEl: '.swiper-button-next',
-                        prevEl: '.swiper-button-prev',
+                        nextEl: '.secKillContainer .swiper-button-next',
+                        prevEl: '.secKillContainer .swiper-button-prev',
                         hiddenClass: 'my-button-hidden',
                     },
-                    // pagination: {//分页器
-                    //     el: '.swiper-pagination',
-                    //     renderBullet: function (index, className) {
-                    //         return '<span class="' + className + '"></span>';
-                    //     },
-                    // },
                 },
+                swiperOption1:{
+                    autoplay:{
+                        reverseDirection: true
+                    },
+                    loop: true,
+                    pagination1:{
+                        el: '.secKillContainer-swiper-pagination'
+                    }
+                },
+                productList:[
+                    {
+                        imgSrc:'/assets/img/watch.jpg'
+                    },
+                    {
+                        imgSrc:'/assets/img/watch.jpg'
+                    },
+                    {
+                        imgSrc:'/assets/img/watch.jpg'
+                    },
+                    {
+                        imgSrc:'/assets/img/watch.jpg'
+                    },
+                    {
+                        imgSrc:'/assets/img/watch.jpg'
+                    },
+                    {
+                        imgSrc:'/assets/img/watch.jpg'
+                    },
+                    {
+                        imgSrc:'/assets/img/watch.jpg'
+                    },
+                    {
+                        imgSrc:'/assets/img/watch.jpg'
+                    },
+                    {
+                        imgSrc:'/assets/img/watch.jpg'
+                    },
+                    {
+                        imgSrc:'/assets/img/watch.jpg'
+                    },
+                    {
+                        imgSrc:'/assets/img/watch.jpg'
+                    },
+                    {
+                        imgSrc:'/assets/img/watch.jpg'
+                    },
+                    {
+                        imgSrc:'/assets/img/watch.jpg'
+                    },
+                    {
+                        imgSrc:'/assets/img/watch.jpg'
+                    }
+                ]
             }
         },
         beforeDestroy(){
@@ -82,6 +131,15 @@
                 this.countDown = this.$utils.getHMS(this.countDownTime);
                 this.countDownTime -= 1000;
             },1000)
+        },
+        methods:{
+            prevClick(){
+                // this.
+            },
+            nextClick(){
+
+            }
+
         }
     }
 </script>
@@ -127,7 +185,7 @@
         display: inline-block;
         width: 20px;
         height: 39px;
-        background: url(https://misc.360buyimg.com/mtd/pc/index_2017/2.1.0/static/images/sprite.secKillContainer.png) -34px 43px;
+        background: url(../../assets/img/sprite_seckill.png) -34px 43px;
     }
     .secKillContainer .counterTime{
         margin-top: 15px;
@@ -161,6 +219,9 @@
         transition: all .3s;
         opacity: .6;
     }
+    .secKillList .prevBtn,.secKillList .nextBtn{
+        outline: none;
+    }
     .prevBtn:hover,.nextBtn:hover{
         opacity: 1;
     }
@@ -170,8 +231,52 @@
     .swiper-button-next{
         right: 0;
     }
-    .secKillList div{
-        /* width: 400px; */
+    .secKillList .productItem{
         height: 100%;
+        background-color: #fff;
+        cursor: pointer;
+        margin-left: 1px;
+    }
+    .secKillList .productItem .productPic{
+        padding: 40px 0;
+    }
+    .secKillList .productItem .productPrice p{
+        width: 90%;
+        margin-left: 5%;
+        color: #333;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        line-height: 30px;
+    }
+    .secKillList .productItem .productPrice>div{
+        padding: 20px 0;
+    }
+    .secKillList .productItem .productPrice>div>span{
+        font-size: 14px;
+    }
+    .secKillList .productItem .productPrice>div>span:first-child{
+        background-color: #ea3635;
+        color: #fff;
+        font-weight: 600;
+        padding: 4px 9px;
+    }
+    .secKillList .productItem .productPrice>div>span:last-child{
+        border: 1px solid #ea3635;
+        color: #ccc;
+        text-decoration: line-through;
+        padding: 3px 8px;
+    }
+    .secKillList .productItem .productPrice>div>span>i{
+        font-size: 14px;
+    }
+    .secKillOthers {
+        width: 202px;
+        background: #fff;
+        text-align: center;
+        padding-top: 10px;
+    }
+    .secKillOthers img{
+        display: inline-block;
     }
 </style>
