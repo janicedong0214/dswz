@@ -52,9 +52,6 @@
 </script>
 
 <style scoped>
-    .blockItemContainer{
-        /* background-color: bisque */
-    }
     .blockItemContainer .itemTitle{
         text-align: left;
         padding: 10px;
