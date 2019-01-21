@@ -222,12 +222,17 @@ export default {
 <style scoped>
 
 .indexContainer>div {
-  width: 1190px;
+  width: 1250px;
   margin: 0 auto;
   display: flex;
+  box-sizing: border-box;
+  padding: 0 30px;
+}
+.indexContainer>.stockpile{
+    padding: 0;
 }
 .indexContainer>div+div{
-    margin-top:20px;
+    margin-top:30px;
 }
 .header > .logo {
   width: 190px;

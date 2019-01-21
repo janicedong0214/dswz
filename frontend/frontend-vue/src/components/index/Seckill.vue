@@ -14,7 +14,7 @@
                 <swiper-slide v-for="(item,index) in productList" :key="index">
                     <div class="productItem">
                         <div class="productPic">
-                            <img src="@/assets/img/watch.jpg">
+                            <img src="../../assets/img/circle.png">
                         </div>
                         <div class="productPrice">
                             <p>西铁城(CITIZEN)男表 男皮手表</p>
@@ -238,7 +238,9 @@
         margin-left: 1px;
     }
     .secKillList .productItem .productPic{
-        padding: 40px 0;
+        padding: 35px 0;
+        height: 213px;
+        box-sizing: border-box;
     }
     .secKillList .productItem .productPrice p{
         width: 90%;
