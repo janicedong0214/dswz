@@ -109,6 +109,9 @@
             <div class="rankList">
                 <RankList/>
             </div>
+            <div class="rankList">
+                <RankList2/>
+            </div>
         </div>
     </div>
 </template>
@@ -117,12 +120,14 @@
 import SecKill from '../components/index/Seckill'
 import Stockpile from '../components/index/Stockpile'
 import RankList from '@/components/index/RankList'
+import RankList2 from '@/components/index/RankList2'
 export default {
   name: "indexContainer",
   components:{
     SecKill,
     Stockpile,
-    RankList
+    RankList,
+    RankList2
   },
   data() {
     return {

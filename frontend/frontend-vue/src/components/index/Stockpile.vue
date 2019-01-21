@@ -31,7 +31,7 @@
     .stockpileContext{
         width: 1260px;
         height: 580px;
-        background-image: url(/assets/img/storePic.81eb397c.png);
+        background-image: url(~@/assets/img/storePic.png);
         background-size: cover;
     }
     .stockpileContext>.container{

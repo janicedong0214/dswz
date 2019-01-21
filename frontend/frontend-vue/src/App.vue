@@ -49,7 +49,7 @@
 
 <style>
     #app {
-      font-family: 'Avenir', Helvetica, Arial, sans-serif;
+      font-family: Microsoft YaHei,Heiti SC,tahoma,arial,Hiragino Sans GB,\\5B8B\4F53,sans-serif;
       text-align: center;
       min-width:1190px;
       margin: 0 auto;

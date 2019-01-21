@@ -26,8 +26,8 @@
                     </div>
                 </swiper-slide>
             </swiper>
-            <div class="swiper-button-prev prevBtn iconfont icon-zuo" @click="prevClick"></div>
-            <div class="swiper-button-next nextBtn iconfont icon-you" @click="nextClick"></div>
+            <div class="swiper-button-prev prevBtn iconfont icon-zuo"></div>
+            <div class="swiper-button-next nextBtn iconfont icon-you"></div>
         </div>
         <!--其他-->
         <div class="secKillOthers">
@@ -131,15 +131,6 @@
                 this.countDown = this.$utils.getHMS(this.countDownTime);
                 this.countDownTime -= 1000;
             },1000)
-        },
-        methods:{
-            prevClick(){
-                // this.
-            },
-            nextClick(){
-
-            }
-
         }
     }
 </script>
