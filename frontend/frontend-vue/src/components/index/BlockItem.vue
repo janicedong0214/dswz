@@ -12,20 +12,6 @@
                 </div>
                 <div class="slideContext">
                     <slot></slot>
-                        <!-- <swiper-slide v-for="(item,index) in productList" :key="index">
-                            <div class="productItem">
-                                <div class="productPic">
-                                    <img src="../../assets/img/circle.png">
-                                </div>
-                                <div class="productPrice">
-                                    <p>西铁城(CITIZEN)男表 男皮手表</p>
-                                    <div>
-                                        <span><i class="iconfont icon-renminbi"></i>6484.00</span>
-                                        <span><i class="iconfont icon-renminbi"></i>6484.00</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </swiper-slide> -->
                 </div>
             </div>
             <div v-else>
