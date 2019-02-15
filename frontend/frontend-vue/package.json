@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build --mode production"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -12,6 +12,7 @@
     "babel-polyfill": "^6.26.0",
     "echarts": "^4.2.0-rc.2",
     "element-ui": "^2.4.11",
+    "mockjs": "^1.0.1-beta3",
     "moment": "^2.23.0",
     "qs": "^6.6.0",
     "velocity-animate": "^1.5.2",

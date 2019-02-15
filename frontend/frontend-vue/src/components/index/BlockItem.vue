@@ -8,10 +8,10 @@
         <div class="itemMain">
             <div v-if="isNeedControl">
                 <div class="tabControl" v-if="isNeedTabControl">
-                    <span v-for="(item,index) in itemInfo.tabList" :key="index" :class="index===currentTab?'current':''" @click="changePanel(index)">{{item}}</span>
+                    <span v-for="(item,index) in itemInfo.tabList" :key="index" :class="index===currentTab?'current':''" @mouseenter="changePanel(index)">{{item}}</span>
                 </div>
                 <div class="slideContext">
-                    <slot></slot>
+                    <slot :index="currentTab"></slot>
                 </div>
             </div>
             <div v-else>
@@ -26,18 +26,19 @@
         props:['itemInfo','isNeedControl','isNeedTabControl'],
         data() {
             return {
-                currentTab: 0
+                currentTab: 0,
             }
         },
         methods:{
             changePanel(index){
                 this.currentTab = index;
+
             }
         }
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
     .blockItemContainer .itemTitle{
         text-align: left;
         padding: 10px;
@@ -75,5 +76,14 @@
     }
     .slideContext{
         height: 320px;
+        .tabBox {
+            height: 100%;
+        }
+    }
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity .5s;
+    }
+    .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+        opacity: 0;
     }
 </style>

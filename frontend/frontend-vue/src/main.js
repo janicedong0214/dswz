@@ -13,10 +13,9 @@ import utils from '@/assets/js/plugins/tools'
 
 //elementUI组件测试
 // import Index from './test/elementUI/Index.vue'
+//引入mock.js
+require('./mock.js')
 
-
-
-Vue.config.productionTip = false
 // Vue.use(loading)
 Vue.use(ElementUI)
 Vue.use(jsonp)

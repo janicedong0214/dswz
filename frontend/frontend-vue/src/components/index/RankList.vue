@@ -2,19 +2,26 @@
     <div class="rankListContainer">
         <!--排行榜-->
         <div class="paihangbang">
-            <BlockItem :itemInfo="itemInfos[0]" :isNeedControl="true" :isNeedTabControl="true">
-                <swiper :options="swiperOption">
-                    <swiper-slide v-for="index in Math.ceil(paihangbangList.length/3)" :key="index">
-                        <ul>
-                            <li v-for="(item,id) in paihangbangList.slice((index-1)*3,(index-1)*3+3)" :key="id">
-                                <img src="@/assets/img/phb1.jpg"/>
-                                <span class="serialNumber">{{item.ranking}}</span>
-                                <span class="description">{{item.desc}}</span>
-                            </li>
-                        </ul>
-                    </swiper-slide>
-                     <div class="swiper-pagination" slot="pagination"></div>
-                </swiper>
+
+            <BlockItem :itemInfo="itemInfos[0]" :isNeedControl="true" :isNeedTabControl="true" >
+                <template slot-scope="slotProps">
+                    <div v-for="(paihangbangItem,num) in paihangbangList" :key="num" v-show="num===slotProps.index" class="tabBox">
+                        <swiper :options="swiperOption">
+                            <swiper-slide v-for="index in Math.ceil(paihangbangItem.goodsList.length/3)" :key="index">
+                                <ul>
+                                    <li v-for="(item,id) in paihangbangItem.goodsList.slice((index-1)*3,(index-1)*3+3)" :key="id">
+                                        <img :src="item.img"/>
+                                        <span class="serialNumber">{{item.ranking}}</span>
+                                        <span class="description">{{item.desc}}</span>
+                                    </li>
+                                </ul>
+                            </swiper-slide>
+                            <div class="swiper-pagination" slot="pagination"></div>
+                        </swiper>
+                    </div>
+                </template>
+                <!--{{1}}slot-scope="slotProps"-->
+
             </BlockItem>
         </div>
         <!--会买专辑-->
@@ -66,34 +73,74 @@
                 },
                 paihangbangList: [
                     {
-                        img: "/assets/img/phb1.jpg",
-                        ranking: '1',
-                        desc: "三只松鼠年货坚果大礼包1698g/1753g火红A版每日坚果送礼网红零食坚果礼盒（新老套餐随机发货）"
+                        typeName:'11',
+                        goodsList:[
+                            {
+                                img: "~@/assets/img/mac.jpg",
+                                ranking: '1',
+                                desc: "三只松鼠年货坚果大礼包1698g/1753g火红A版每日坚果送礼网红零食坚果礼盒（新老套餐随机发货）"
+                            },
+                            {
+                                img: "~@/assets/rankingPic.jpg",
+                                ranking: '2',
+                                desc: "三只松鼠年货坚果大礼包1698g/1753g火红A版每日坚果送礼网红零食坚果礼盒（新老套餐随机发货）"
+                            },
+                            {
+                                img: "~@/assets/rankingPic.jpg",
+                                ranking: '3',
+                                desc: "三只松鼠年货坚果大礼包1698g/1753g火红A版每日坚果送礼网红零食坚果礼盒（新老套餐随机发货）"
+                            },
+                            {
+                                img: "~@/assets/rankingPic.jpg",
+                                ranking: '4',
+                                desc: "三只松鼠年货坚果大礼包1698g/1753g火红A版每日坚果送礼网红零食坚果礼盒（新老套餐随机发货）"
+                            },
+                            {
+                                img: "~@/assets/rankingPic.jpg",
+                                ranking: '5',
+                                desc: "三只松鼠年货坚果大礼包1698g/1753g火红A版每日坚果送礼网红零食坚果礼盒（新老套餐随机发货）"
+                            },
+                            {
+                                img: "~@/assets/rankingPic.jpg",
+                                ranking: '6',
+                                desc: "三只松鼠年货坚果大礼包1698g/1753g火红A版每日坚果送礼网红零食坚果礼盒（新老套餐随机发货）"
+                            }
+                        ]
                     },
                     {
-                        img: "~@/assets/rankingPic.jpg",
-                        ranking: '2',
-                        desc: "三只松鼠年货坚果大礼包1698g/1753g火红A版每日坚果送礼网红零食坚果礼盒（新老套餐随机发货）"
-                    },
-                    {
-                        img: "~@/assets/rankingPic.jpg",
-                        ranking: '3',
-                        desc: "三只松鼠年货坚果大礼包1698g/1753g火红A版每日坚果送礼网红零食坚果礼盒（新老套餐随机发货）"
-                    },
-                    {
-                        img: "~@/assets/rankingPic.jpg",
-                        ranking: '4',
-                        desc: "三只松鼠年货坚果大礼包1698g/1753g火红A版每日坚果送礼网红零食坚果礼盒（新老套餐随机发货）"
-                    },
-                    {
-                        img: "~@/assets/rankingPic.jpg",
-                        ranking: '5',
-                        desc: "三只松鼠年货坚果大礼包1698g/1753g火红A版每日坚果送礼网红零食坚果礼盒（新老套餐随机发货）"
-                    },
-                    {
-                        img: "~@/assets/rankingPic.jpg",
-                        ranking: '6',
-                        desc: "三只松鼠年货坚果大礼包1698g/1753g火红A版每日坚果送礼网红零食坚果礼盒（新老套餐随机发货）"
+                        typeName:'22',
+                        goodsList:[
+                            {
+                                img: "/assets/img/mac.jpg",
+                                ranking: '1',
+                                desc: "三只松鼠年货坚果大礼包1698g/1753g火红A版每日坚果送礼网红零食坚果礼盒（新老套餐随机发货）"
+                            },
+                            {
+                                img: "~@/assets/mac.jpg",
+                                ranking: '2',
+                                desc: "三只松鼠年货坚果大礼包1698g/1753g火红A版每日坚果送礼网红零食坚果礼盒（新老套餐随机发货）"
+                            },
+                            {
+                                img: "~@/assets/mac.jpg",
+                                ranking: '3',
+                                desc: "三只松鼠年货坚果大礼包1698g/1753g火红A版每日坚果送礼网红零食坚果礼盒（新老套餐随机发货）"
+                            },
+                            {
+                                img: "~@/assets/mac.jpg",
+                                ranking: '4',
+                                desc: "三只松鼠年货坚果大礼包1698g/1753g火红A版每日坚果送礼网红零食坚果礼盒（新老套餐随机发货）"
+                            },
+                            {
+                                img: "~@/assets/mac.jpg",
+                                ranking: '5',
+                                desc: "三只松鼠年货坚果大礼包1698g/1753g火红A版每日坚果送礼网红零食坚果礼盒（新老套餐随机发货）"
+                            },
+                            {
+                                img: "~@/assets/mac.jpg",
+                                ranking: '6',
+                                desc: "三只松鼠年货坚果大礼包1698g/1753g火红A版每日坚果送礼网红零食坚果礼盒（新老套餐随机发货）"
+                            }
+                        ]
                     }
                 ]
             }

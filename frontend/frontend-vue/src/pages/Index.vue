@@ -29,15 +29,15 @@
                 <!-- 左侧详细导航 -->
                 <div class="leftNav">
                     <ul>
-                        <li>
+                        <!-- <li>
                             <span><span>家用电器</span></span>
-                        </li>
-                        <!-- <li v-for="(item,index) in detailSorts" :key="index">
+                        </li> -->
+                        <li v-for="(item,index) in detailSorts" :key="index">
                             <span v-for="(itemB,index) in item.s" :key="index">
                                 <i v-if="index>0" class="divideLine">/</i>
                                 <span>{{itemB.n | sortDetailTitle}}</span>
                             </span>
-                        </li> -->
+                        </li>
                     </ul>
                 </div>
                 <!-- 中心轮播图 -->
@@ -179,7 +179,7 @@ export default {
     };
   },
   mounted() {
-    // this.getSortDetails();
+    this.getSortDetails();
     // this.getNewsList();
   },
   filters: {
