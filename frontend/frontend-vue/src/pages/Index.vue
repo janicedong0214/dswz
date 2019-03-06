@@ -117,8 +117,8 @@
 </template>
 
 <script>
-import SecKill from '../components/index/Seckill'
-import Stockpile from '../components/index/Stockpile'
+import SecKill from '@/components/index/Seckill'
+import Stockpile from '@/components/index/Stockpile'
 import RankList from '@/components/index/RankList'
 import RankList2 from '@/components/index/RankList2'
 export default {
@@ -177,6 +177,12 @@ export default {
           {icon:'icon-baitiaoquxian',title:'白条'},
       ]
     };
+  },
+  created() {
+      console.log("模拟数据")
+      this.$axios.get('/news/index').then(res => {
+          console.log(res);
+      })
   },
   mounted() {
     this.getSortDetails();

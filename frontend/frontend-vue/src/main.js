@@ -10,18 +10,18 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.min.css'
 import moment from 'moment'
 import utils from '@/assets/js/plugins/tools'
+import axios from 'axios'
 
-//elementUI组件测试
-// import Index from './test/elementUI/Index.vue'
 //引入mock.js
 require('./mock.js')
 
 // Vue.use(loading)
-Vue.use(ElementUI)
-Vue.use(jsonp)
+Vue.use(ElementUI);
+Vue.use(jsonp);
 Vue.use(VueAwesomeSwiper)
-Vue.prototype.$moment = moment
-Vue.prototype.$utils = utils
+Vue.prototype.$moment = moment;
+Vue.prototype.$utils = utils;
+Vue.prototype.$axios = axios;
 
 new Vue({
   // store,

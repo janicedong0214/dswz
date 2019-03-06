@@ -10,22 +10,14 @@
         </div>
       </div>
     </transition>
-    <Header/>
-    <router-view/>
-    <Footer/>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-  import Header from '@/components/Header'
-  import Footer from '@/components/Footer'
   import Velocity from 'velocity-animate'
   export default {
     name: 'app',
-    components:{
-      Header,
-      Footer
-    },
     data() {
       return {
         zoomAnimation:'',
@@ -50,7 +42,7 @@
 <style>
     #app {
       font-family: Microsoft YaHei,Heiti SC,tahoma,arial,Hiragino Sans GB,\\5B8B\4F53,sans-serif;
-      text-align: center;
+      /* text-align: center; */
       min-width:1190px;
       margin: 0 auto;
       position: relative;

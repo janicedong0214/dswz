@@ -1,21 +1,38 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Index from './pages/Index';
-import Cart from './pages/Cart';
-import Test from './test/sass/test';
+import Login from './pages/Login'
+import Main from './pages/Main'
+import Test from './Test'
+
+
 Vue.use(Router);
 
 export default new Router({
+    mode: 'history',
     routes:[
         {
-            path:'/',
-            name:'Index',
-            component:Index
+            path: '/',
+            name: 'Main',
+            component: Main,
+            redirect: '/index',
+            children:[
+                {
+                    path: '/index',
+                    name: 'index',
+                    //这种方式不写后缀名，会报错
+                    component: ()=>import('./pages/Index.vue')
+                },
+                {
+                    path:'/cart',
+                    name:'cart',
+                    component: ()=>import('./pages/Cart.vue')
+                }
+            ]
         },
         {
-            path:'/cart',
-            name:'/cart',
-            component:Cart
+            path:'/login',
+            name:'login',
+            component: Login
         },
         {
             path:'/test',
