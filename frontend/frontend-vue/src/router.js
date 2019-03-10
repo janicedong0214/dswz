@@ -19,6 +19,9 @@ export default new Router({
                 {
                     path: '/index',
                     name: 'index',
+                    meta: {
+                        title:'购物商城首页'
+                    },
                     //这种方式不写后缀名，会报错
                     component: ()=>import('./pages/Index.vue')
                 },

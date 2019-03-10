@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <transition 
+    <transition
       @leave="handleLeave"
       :css="false"
     >
@@ -10,7 +10,7 @@
         </div>
       </div>
     </transition>
-    <router-view></router-view>
+    <router-view/>
   </div>
 </template>
 
@@ -25,7 +25,7 @@
       }
     },
     mounted(){
-      this.hideAdd();
+      // this.hideAdd();
     },
     methods: {
       hideAdd(){
@@ -42,7 +42,7 @@
 <style>
     #app {
       font-family: Microsoft YaHei,Heiti SC,tahoma,arial,Hiragino Sans GB,\\5B8B\4F53,sans-serif;
-      /* text-align: center; */
+      text-align: center;
       min-width:1190px;
       margin: 0 auto;
       position: relative;
