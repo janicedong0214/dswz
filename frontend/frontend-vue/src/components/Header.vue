@@ -6,7 +6,7 @@
             </span>
             <ul class="nav clearfix">
                 <li>
-                    <span class="login">您好，请登录</span>
+                    <span class="login" @click="toLogin">您好，请登录</span>
                     <span class="register">免费注册</span>
                 </li>
                 <li><span>我的订单</span></li>
@@ -27,6 +27,12 @@
         data(){
             return{
                 
+            }
+        },
+        methods: {
+            //跳转到登录页面
+            toLogin() {
+                this.$router.push('/login');
             }
         }
     }
