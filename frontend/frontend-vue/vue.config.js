@@ -1,6 +1,6 @@
 module.exports = {
     //部署在域名下的子目录下
-    baseUrl: process.env.NODE_ENV === "production" ? "/test/" : "./",
+    baseUrl: process.env.NODE_ENV === "production" ? "/test/" : "",
     lintOnSave: false,
     // 静态目录路径
     assetsDir: 'distVue',
