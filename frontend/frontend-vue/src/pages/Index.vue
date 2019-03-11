@@ -116,19 +116,40 @@
                 <RankList2/>
             </div>
             <!-- 时尚达人 -->
-            <div class="fashionBox"></div>
+            <div class="fashionBox">
+                <p class="title"><span class="lineLeft"></span><span>时尚达人</span><span class="lineRight"></span></p>
+
+            </div>
             <!-- 智能先锋 -->
-            <div class="intelligentPioneer"></div>
+            <div class="intelligentPioneer">
+                <p class="title"><span class="lineLeft"></span><span>智能先锋</span><span class="lineRight"></span></p>
+
+            </div>
             <!-- 生活百货 -->
-            <div class="departmentOfLife"></div>
+            <div class="departmentOfLife">
+                <p class="title"><span class="lineLeft"></span><span>生活百货</span><span class="lineRight"></span></p>
+
+            </div>
             <!-- 居家优品 -->
-            <div class="perfectGoods"></div>
+            <div class="perfectGoods">
+                <p class="title"><span class="lineLeft"></span><span>居家优品</span><span class="lineRight"></span></p>
+
+            </div>
             <!-- JOY寻宝 -->
-            <div class="enjoy"></div>
+            <div class="enjoy">
+                <p class="title"><span class="lineLeft"></span><span>JOY寻宝</span><span class="lineRight"></span></p>
+
+            </div>
             <!-- 特色推荐 -->
-            <div class="special"></div>
+            <div class="special">
+                <p class="title"><span class="lineLeft"></span><span>特色推荐</span><span class="lineRight"></span></p>
+
+            </div>
             <!-- 其他 -->
-            <div class="others"></div>
+            <div class="others">
+                <p class="title"><span class="lineLeft"></span><span>时尚达人</span><span class="lineRight"></span></p>
+
+            </div>
         </div>
     </div>
 </template>
@@ -138,7 +159,6 @@
     import Stockpile from '../components/index/Stockpile'
     import RankList from '@/components/index/RankList'
     import RankList2 from '@/components/index/RankList2'
-
     export default {
         name: "indexContainer",
         components: {
@@ -211,7 +231,7 @@
         methods: {
             //跳转到购物车
             toMyCart() {
-                console.log(this)
+                console.log(this);
                 this.$router.push('/cart');
             },
             //获取详细分类列表
@@ -229,7 +249,7 @@
                 this.$jsonp.http("https://floor.jd.com/recommend/news/get", "utf-8", {
                     callback: "callback"
                 }).then(res => {
-                    // this.newsList = res
+                    this.newsList = res
                 })
             }
         }
@@ -251,6 +271,20 @@
             padding: 0 30px;
             + div {
                 margin-top: 30px;
+            }
+            >.title {
+                font-weight: 600;
+                font-size: 20px;
+                width: 100%;
+                text-align: center;
+                .lineLeft,.lineRight {
+                    display: inline-block;
+                    background-color: #333;
+                    width: 90px;
+                    height: 5px;
+                    vertical-align: middle;
+                    margin: 0 20px;
+                }
             }
         }
         > .stockpile {
@@ -302,6 +336,7 @@
                 }
             }
         }
+
     }
 
     .shoppingCart {

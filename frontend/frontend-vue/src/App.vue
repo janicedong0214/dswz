@@ -31,7 +31,7 @@
       hideAdd(){
         this.show = !this.show;
       },
-      handleLeave(el, done){
+      handleLeave(el){
         Velocity(el, 'stop');
         Velocity(el, 'slideUp');
       }

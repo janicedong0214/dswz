@@ -8,111 +8,28 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue-awesome-swiper@3.1.2/dist/vue-awesome-swiper.js"></script>
     <style>
-        .mainbox{
-            width: 600px;
-            /* height: 800px; */
-            background-color: beige;
-            margin: 50px auto;
+        html,body {
+            margin: 0;
+            padding: 0;
+            background: #666;
         }
-        .flexLayout{
-            display: flex;
-            /* flex-direction: column-reverse; */
-            /* flex-wrap:wrap-reverse; */
-            flex-flow: row wrap;
-            justify-content:center;
-            align-items: center;
-        }
-        .box1,.box2{
-            border: 1px solid #ccc;
-            padding: 10px 60px;
-            /* order: 10; */
-            flex-grow: 1;
-        }
-        .box1{
+        .boundary {
+            width: 100%;
             height: 100px;
+            background: bisque;
         }
-        .box2{
-            height: 150px;
+        .test1 {
+            margin: 10px;
+            background: #fff;
         }
-        .box8{
-            order: -1;
-        }
+
     </style>
 </head>
 <body>
-    <div class="mainbox">
-        <div class="flexLayout">
-            <div class="box2">
-                box1
-            </div>
-            <div class="box1">
-                box2
-            </div>
-            <div class="box1">
-                box3
-            </div>
-            <!-- <span>111111</span> -->
-            <!-- <div class="box2">
-                box4
-            </div><div class="box1">
-                box5
-            </div>
-            <div class="box2">
-                box6
-            </div>
-            <div class="box1">
-                box7
-            </div>
-            <div class="box2 box8">
-                box8
-            </div> -->
-        </div>
+    <div class="mainBox">
+        <div class="boundary"></div>
+        <span class="test1">111111</span>
     </div>
-    <div class="swiperSlide" id="app">
-        <swiper :options="swiperOption">
-            <swiper-slide>
-                <div>11111111111111</div>
-            </swiper-slide>
-            <swiper-slide>
-                <div>22222222222222</div>
-            </swiper-slide>
-            <swiper-slide>
-                <div>33333333333</div>
-            </swiper-slide>
-            <!-- <div class="swiper-pagination" slot="pagination"></div> -->
-            <div class="swiper-button-prev prevBtn iconfont icon-zuo"></div>
-            <div class="swiper-button-next nextBtn iconfont icon-you"></div>
-        </swiper>
-    </div>
-    <script type="text/javascript">
-        new Vue({
-            el:'#app',
-            data:{
-                swiperOption: {
-                    clickable :true,
-                    // autoplay: true,
-                    effect : 'fade',
-                    slidesPerView: 3,
-                    grabCursor: true,
-                    slidesPerColumnFill : 'row',
-                    direction: 'horizontal',
-                    fadeEffect: {//卡片淡入淡出
-                        crossFade: true,
-                    },
-                    navigation: {//前后按钮
-                        nextEl: '.swiper-button-next',
-                        prevEl: '.swiper-button-prev',
-                        hiddenClass: 'my-button-hidden',
-                    },
-                    // pagination: {//分页器
-                    //     el: '.swiper-pagination',
-                    //     renderBullet: function (index, className) {
-                    //         return '<span class="' + className + '"></span>';
-                    //     },
-                    // },
-                },
-            }
-        })
-    </script>
+
 </body>
 </html>
