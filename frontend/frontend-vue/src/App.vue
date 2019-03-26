@@ -1,15 +1,25 @@
 <template>
   <div id="app">
-    <transition
+    <!-- <transition
       @leave="handleLeave"
-      :css="false"
     >
       <div class="advertise" :class="zoomAnimation" v-show="show">
         <div class="adContext">
           <i class="iconfont icon-guanbi" @click="hideAdd"></i>
         </div>
       </div>
-    </transition>
+    </transition> -->
+    <div class="donghuagouzi">
+      <transition
+        @before-enter="handleVeforeEnter"
+        @enter="handleEnter"
+        @after-enter="handleAfterEnter"
+      >
+        <div v-show="show">hello World</div>
+      </transition>
+      <button @click="handleClick">toggle</button>
+      
+    </div>
     <router-view/>
   </div>
 </template>
@@ -33,7 +43,19 @@
       },
       handleLeave(el){
         Velocity(el, 'stop');
+        Velocity(el, 'slideDown');
+      },
+      handleClick() {
+        this.show = !this.show
+      },
+      handleVeforeEnter(el){
+       el.style.opacity = 0
+      },
+      handleEnter(el, done){
         Velocity(el, 'slideUp');
+      },
+      handleAfterEnter(){
+        console.log('动画结束')
       }
     },
   }

@@ -26,20 +26,7 @@
                 </div>
             </div>
             <div class="banner">
-                <!-- 左侧详细导航 -->
-                <div class="leftNav">
-                    <ul>
-                        <!-- <li>
-                            <span><span>家用电器</span></span>
-                        </li> -->
-                        <li v-for="(item,index) in detailSorts" :key="index">
-                            <span v-for="(itemB,index) in item.s" :key="index">
-                                <i v-if="index>0" class="divideLine">/</i>
-                                <span>{{itemB.n | sortDetailTitle}}</span>
-                            </span>
-                        </li>
-                    </ul>
-                </div>
+                <Category/>
                 <!-- 中心轮播图 -->
                 <div class="goodsShow">
                     <div>
@@ -147,8 +134,7 @@
             </div>
             <!-- 其他 -->
             <div class="others">
-                <p class="title"><span class="lineLeft"></span><span>时尚达人</span><span class="lineRight"></span></p>
-
+                <p class="title"><span class="lineLeft"></span><span>其他</span><span class="lineRight"></span></p>
             </div>
         </div>
     </div>
@@ -159,13 +145,15 @@
     import Stockpile from '../components/index/Stockpile'
     import RankList from '@/components/index/RankList'
     import RankList2 from '@/components/index/RankList2'
+    import Category from '@/components/index/Category'
     export default {
         name: "indexContainer",
         components: {
             SecKill,
             Stockpile,
             RankList,
-            RankList2
+            RankList2,
+            Category
         },
         data() {
             return {
@@ -217,33 +205,16 @@
             };
         },
         mounted() {
-            this.getSortDetails();
             // this.getNewsList();
         },
-        filters: {
-            sortDetailTitle(value) {
-                if (value.indexOf("|")) {
-                    return value.split("|")[1].trim();
-                }
-                return "";
-            }
-        },
+        
         methods: {
             //跳转到购物车
             toMyCart() {
                 console.log(this);
                 this.$router.push('/cart');
             },
-            //获取详细分类列表
-            getSortDetails() {
-                this.$jsonp
-                    .http("https://dc.3.cn/category/get", "gbk", {
-                        callback: "callback"
-                    })
-                    .then(res => {
-                        this.detailSorts = res.data;
-                    });
-            },
+            
             //获取新闻列表
             getNewsList() {
                 this.$jsonp.http("https://floor.jd.com/recommend/news/get", "utf-8", {
@@ -402,32 +373,6 @@
 
     .banner {
         height: 480px;
-        .leftNav {
-            width: 190px;
-            background-color: #fff;
-            ul {
-                text-align: left;
-                padding-left: 10px;
-                li {
-                    height: 26px;
-                    line-height: 26px;
-                }
-            }
-            span {
-                color: #666;
-                display: inline-block;
-                cursor: pointer;
-                font-size: 14px;
-                transition: all 0.3s;
-                > span:hover {
-                    color: #e30000;
-                }
-            }
-            i {
-                font-size: 14px;
-                padding: 0 2px;
-            }
-        }
     }
 
     .goodsShow {

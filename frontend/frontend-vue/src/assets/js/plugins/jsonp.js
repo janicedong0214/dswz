@@ -36,5 +36,4 @@ const jsonp = {
         })
     }
 }
-
 export default jsonp;
