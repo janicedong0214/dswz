@@ -9,16 +9,19 @@ const jsonp = {
         return new Promise((resolve, reject)=>{
             //创建script标签
             let script = document.createElement('script');
+            //获取回调函数名
+            let callbcakName = params.callback || 'callback';
             //拼接参数
             let param = '?'+qs.stringify(params);
+
             script.src = baseUrl + param;
             script.charset = charset;
             script.id = "jsonpScript";
             //添加到最后
             document.body.appendChild(script);
             //触发回调函数
-            window.callback = function(response) {
-                if(response.code == '0'){
+            window[callbcakName] = function(response) {
+                if(response.code === '0'){
                     resolve(response);
                 }else{
                     reject(response);
