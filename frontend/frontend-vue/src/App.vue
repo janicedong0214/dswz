@@ -9,17 +9,6 @@
         </div>
       </div>
     </transition> -->
-    <div class="donghuagouzi">
-      <transition
-        @before-enter="handleVeforeEnter"
-        @enter="handleEnter"
-        @after-enter="handleAfterEnter"
-      >
-        <div v-show="show">hello World</div>
-      </transition>
-      <button @click="handleClick">toggle</button>
-      
-    </div>
     <router-view/>
   </div>
 </template>

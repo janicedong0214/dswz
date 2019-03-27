@@ -206,6 +206,7 @@
         },
         mounted() {
             // this.getNewsList();
+            this.getHotKeyWords();
         },
         
         methods: {
@@ -221,6 +222,14 @@
                     callback: "callback"
                 }).then(res => {
                     this.newsList = res
+                })
+            },
+            //获取热搜关键词
+            getHotKeyWords() {
+                this.$jsonp.http("https://floor.jd.com/user/hotwords/get", "utf-8", {
+                    callback:"callback"
+                }).then(res => {
+                    console.log(res)
                 })
             }
         }
