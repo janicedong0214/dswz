@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+      <!--<router-link to="/test">test1</router-link>-->
     <!-- <transition
       @leave="handleLeave"
     >
@@ -44,7 +45,7 @@
         Velocity(el, 'slideUp');
       },
       handleAfterEnter(){
-        console.log('动画结束')
+        // console.log('动画结束')
       }
     },
   }

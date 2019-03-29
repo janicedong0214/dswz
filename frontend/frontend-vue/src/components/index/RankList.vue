@@ -2,7 +2,6 @@
     <div class="rankListContainer">
         <!--排行榜-->
         <div class="paihangbang">
-
             <BlockItem :itemInfo="itemInfos[0]" :isNeedControl="true" :isNeedTabControl="true" >
                 <template slot-scope="slotProps">
                     <div v-for="(paihangbangItem,num) in paihangbangList" :key="num" v-show="num===slotProps.index" class="tabBox">
@@ -20,8 +19,6 @@
                         </swiper>
                     </div>
                 </template>
-                <!--{{1}}slot-scope="slotProps"-->
-
             </BlockItem>
         </div>
         <!--会买专辑-->
@@ -145,6 +142,32 @@
                 ]
             }
         },
+        mounted() {
+            this.getRankList1();
+            this.getRankDetails();
+        },
+        methods: {
+            //获取排行榜分类
+            getRankList1() {
+                this.$jsonp.http("https://ch.jd.com/homecate2", "utf-8", {
+                    source:'pc',
+                    callback:"jsonpTopCate"
+                }).then(res => {
+                    this.itemInfos[0].tabList = res.cateList;
+                })
+            },
+            //获取排行详细列表
+            getRankDetails() {
+                this.$jsonp.http("https://ch.jd.com/homepro", "utf-8", {
+                    source:'pc',
+                    cateid:'5019',
+                    callback:"jsonpTopRank0"
+                }).then(res => {
+                    console.log(res)
+                })
+            }
+
+        }
     }
 </script>
 

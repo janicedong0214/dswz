@@ -9,7 +9,7 @@ import jsonp from './assets/js/plugins/jsonp'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.min.css'
 import moment from 'moment'
-import utils from '@/assets/js/plugins/tools'
+import utils from './assets/js/plugins/tools'
 import axios from 'axios'
 import Velocity from 'velocity-animate'
 

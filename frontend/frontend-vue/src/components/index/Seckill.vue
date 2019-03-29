@@ -2,7 +2,7 @@
     <div class="secKillContainer">
         <!--倒计时-->
         <div class="counter">
-            <p>京东秒杀</p>
+            <p>migo秒杀</p>
             <p>FLASH DEALS</p>
             <p><span class="killIcon"></span></p>
             <p>本场距离结束还剩</p>
@@ -11,7 +11,7 @@
         <!--轮播图-->
         <div class="secKillList">
             <swiper :options="swiperOption">
-                <swiper-slide v-for="(item,index) in productList" :key="index">
+                <swiper-slide v-for="n in 13" :key="n">
                     <div class="productItem">
                         <div class="productPic">
                             <img src="../../assets/img/circle.png">
@@ -77,45 +77,6 @@
                 productList:[
                     {
                         imgSrc:'/assets/img/watch.jpg'
-                    },
-                    {
-                        imgSrc:'/assets/img/watch.jpg'
-                    },
-                    {
-                        imgSrc:'/assets/img/watch.jpg'
-                    },
-                    {
-                        imgSrc:'/assets/img/watch.jpg'
-                    },
-                    {
-                        imgSrc:'/assets/img/watch.jpg'
-                    },
-                    {
-                        imgSrc:'/assets/img/watch.jpg'
-                    },
-                    {
-                        imgSrc:'/assets/img/watch.jpg'
-                    },
-                    {
-                        imgSrc:'/assets/img/watch.jpg'
-                    },
-                    {
-                        imgSrc:'/assets/img/watch.jpg'
-                    },
-                    {
-                        imgSrc:'/assets/img/watch.jpg'
-                    },
-                    {
-                        imgSrc:'/assets/img/watch.jpg'
-                    },
-                    {
-                        imgSrc:'/assets/img/watch.jpg'
-                    },
-                    {
-                        imgSrc:'/assets/img/watch.jpg'
-                    },
-                    {
-                        imgSrc:'/assets/img/watch.jpg'
                     }
                 ]
             }
@@ -131,6 +92,9 @@
                 this.countDown = this.$utils.getHMS(this.countDownTime);
                 this.countDownTime -= 1000;
             },1000)
+        },
+        methods: {
+
         }
     }
 </script>

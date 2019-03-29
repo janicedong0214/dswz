@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from './pages/Login'
 import Main from './pages/Main'
-import Test from './Test'
+import Test from './test/jsonpPage'
 
 
 Vue.use(Router);
@@ -38,9 +38,9 @@ export default new Router({
             component: Login
         },
         {
-            path:'/test',
-            name:'/test',
-            component:Test
+            path: '/test',
+            name: 'test',
+            component: Test
         }
     ]
 })

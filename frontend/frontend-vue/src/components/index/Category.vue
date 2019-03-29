@@ -39,7 +39,7 @@
             //获取详细分类列表
             getSortDetails() {
                 this.$jsonp.http("https://dc.3.cn/category/get", "gbk", {
-                    callback: "callback"
+                    callback: "callbackSortDetails"
                 })
                 .then(res => {
                     this.detailSorts = res.data;

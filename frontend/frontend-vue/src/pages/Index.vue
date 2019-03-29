@@ -11,7 +11,11 @@
                             <input type="text" placeholder="搜索">
                             <span class="searchIcon iconfont icon-search"></span>
                             <div class="hotSearch">
-                                <span v-for="(keyWord,index) in hotKeyWords" :key="index">{{keyWord}}</span>
+                                <span v-for="(keyWord,index) in hotKeyWords" :key="index">
+                                    <router-link to="/index">
+                                        {{keyWord.text}}
+                                    </router-link>
+                                </span>
                             </div>
                         </div>
                         <!-- 购物车数量 -->
@@ -31,14 +35,8 @@
                 <div class="goodsShow">
                     <div>
                         <swiper :options="swiperOption">
-                            <swiper-slide>
-                                <img src="https://m.360buyimg.com/babel/jfs/t1/22949/14/3036/56494/5c23632aE9f6f0a67/19e3effbbe480803.jpg"/>
-                            </swiper-slide>
-                            <swiper-slide>
-                                <img src="https://m.360buyimg.com/babel/jfs/t1/15843/35/2196/66399/5c1a2b1dE0c19c753/4acf70b9397bdf01.jpg"/>
-                            </swiper-slide>
-                            <swiper-slide>
-                                <img src="https://m.360buyimg.com/babel/jfs/t1/9481/36/10388/81500/5c21e4a0E77c4793c/babf10b61e721b0b.jpg"/>
+                            <swiper-slide v-for="(banner,index) in bannerImgs" :key="index">
+                                <img :src="banner.imgUrl"/>
                             </swiper-slide>
                             <div class="swiper-pagination" slot="pagination"></div>
                             <div class="swiper-button-prev prevBtn iconfont icon-zuo"></div>
@@ -46,9 +44,7 @@
                         </swiper>
                     </div>
                     <ul>
-                        <li><a href="#"><img src="@/assets/img/index1_1.jpg"/></a></li>
-                        <li><a href="#"><img src="@/assets/img/index1_2.jpg"/></a></li>
-                        <li><a href="#"><img src="@/assets/img/index1_3.jpg"/></a></li>
+                        <li v-for="(el,index) in booksRecommend" :key="index"><router-link :to="el.linkUrl"><img :src="el.imgUrl"/></router-link></li>
                     </ul>
                 </div>
                 <!-- 其他个人操作 -->
@@ -90,10 +86,6 @@
             <!--秒杀-->
             <div class="seckill">
                 <SecKill/>
-            </div>
-            <!--新年特辑-->
-            <div class="stockpile">
-                <Stockpile/>
             </div>
             <!--排行榜-->
             <div class="rankList">
@@ -142,24 +134,27 @@
 
 <script>
     import SecKill from '../components/index/Seckill'
-    import Stockpile from '../components/index/Stockpile'
-    import RankList from '@/components/index/RankList'
-    import RankList2 from '@/components/index/RankList2'
-    import Category from '@/components/index/Category'
+    import RankList from '../components/index/RankList'
+    import RankList2 from '../components/index/RankList2'
+    import Category from '../components/index/Category'
     export default {
         name: "indexContainer",
         components: {
             SecKill,
-            Stockpile,
             RankList,
             RankList2,
             Category
         },
         data() {
             return {
+                //主导航栏
                 mainNavList: ["秒杀", "优惠券", "会员", "闪购", "拍卖", "migo时尚", "migo超市", "海囤全球", "xxjinrong"],
-                hotKeyWords: ["好物好家电", "米面杂粮", "nova4", "新年美妆", "每99减100"],
-                detailSorts: [],
+                //搜索关键词推荐
+                hotKeyWords: [],
+                //图书推荐列表
+                booksRecommend:[],
+                //banner轮播图列表
+                bannerImgs:[],
                 newsTypes: ['公告', '活动', 'HOT', '热门'],
                 newsContext: [
                     'VERTU官方旗舰店满100减99',
@@ -201,25 +196,29 @@
                     {icon: 'icon-38', title: '理财'},
                     {icon: 'icon-jingdongzhongchou', title: '众筹'},
                     {icon: 'icon-baitiaoquxian', title: '白条'},
-                ]
+                ],
+                //placeholder定时器
+                placeholderTimer:''
             };
         },
         mounted() {
             // this.getNewsList();
             this.getHotKeyWords();
+            this.getBooksRecommend();
+            this.getBannerImgList();
         },
-        
+        watch:{
+        },
         methods: {
             //跳转到购物车
             toMyCart() {
-                console.log(this);
                 this.$router.push('/cart');
             },
             
             //获取新闻列表
             getNewsList() {
                 this.$jsonp.http("https://floor.jd.com/recommend/news/get", "utf-8", {
-                    callback: "callback"
+                    callback: "callbackNewsList"
                 }).then(res => {
                     this.newsList = res
                 })
@@ -227,9 +226,59 @@
             //获取热搜关键词
             getHotKeyWords() {
                 this.$jsonp.http("https://floor.jd.com/user/hotwords/get", "utf-8", {
-                    callback:"callback"
+                    callback:"callbackHotWords"
                 }).then(res => {
-                    console.log(res)
+                    res.data.map((item) => {
+                        if(item.u) {
+                            this.hotKeyWords.push({
+                                text:item.ext_columns.text,
+                                url:'/index'
+                            });
+                        }
+                    })
+                    this.hotKeyWords = this.hotKeyWords.slice(0,this.hotKeyWords.length-2)
+                })
+            },
+            //获取图书推荐列表
+            getBooksRecommend() {
+                this.$jsonp.http("https://floor.jd.com/recommend/today_gateway/get", "utf-8", {
+                    jda:'122270672.1847485673.1553580454.1553580455.1553584757.2',
+                    uuid:'1847485673',
+                    callback:"jsonpRec"
+                }).then(res => {
+                    res.data.map((item) => {
+                        if(item.img) {
+                            this.booksRecommend.push({
+                                imgUrl:item.img,
+                                linkUrl:'/index'
+                            })
+                        }else if(item instanceof Array) {
+                            item.map((e) => {
+                                this.booksRecommend.push({
+                                    imgUrl:e.img,
+                                    linkUrl:'/index'
+                                })
+                            })
+                        }
+                    })
+
+                })
+            },
+            //获取banner轮播图片
+            getBannerImgList(){
+                this.$jsonp.http("https://f.3.cn/recommend/focus_gateway/get", "utf-8", {
+                    jda:'122270672.1847485673.1553580454.1553580455.1553584757.2',
+                    uuid:'1847485673',
+                    callback:"jsonpFocus"
+                }).then(res => {
+                    res.data.map((item) => {
+                        item.map((subItem)=>{
+                            this.bannerImgs.push({
+                                imgUrl: subItem.src,
+                                linkUrl: '/index'
+                            })
+                        })
+                    })
                 })
             }
         }
@@ -361,6 +410,9 @@
             + span {
                 margin-left: 10px;
             }
+            &:hover a{
+                color:#e30000;
+            }
         }
     }
 
@@ -398,6 +450,9 @@
                 img {
                     opacity: 1;
                     transition: all 0.3s;
+                    width: 190px;
+                    height: 150px;
+                    border: 0;
                 }
                 &:hover img {
                     opacity: 0.8;

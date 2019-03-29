@@ -8,14 +8,14 @@
         <div class="itemMain">
             <div v-if="isNeedControl">
                 <div class="tabControl" v-if="isNeedTabControl">
-                    <span v-for="(item,index) in itemInfo.tabList" :key="index" :class="index===currentTab?'current':''" @mouseenter="changePanel(index)">{{item}}</span>
+                    <span v-for="(item,index) in itemInfo.tabList" :key="index" :class="index===currentTab?'current':''" @mouseenter="changePanel(item.cateId,index)">{{item.cateName}}</span>
                 </div>
                 <div class="slideContext">
                     <slot :index="currentTab"></slot>
                 </div>
             </div>
             <div v-else>
-                <div class="staticContext">dsdddddddddd</div>
+                <div class="staticContext"></div>
             </div>
         </div>
     </div>
@@ -30,9 +30,8 @@
             }
         },
         methods:{
-            changePanel(index){
+            changePanel(id,index){
                 this.currentTab = index;
-
             }
         }
     }

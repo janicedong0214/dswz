@@ -2,15 +2,12 @@
 import qs from 'qs';
 
 const jsonp = {
-    install(Vue){
-        Vue.prototype.$jsonp = this;
-    },
     http(baseUrl, charset, params={}){
         return new Promise((resolve, reject)=>{
             //创建script标签
             let script = document.createElement('script');
             //获取回调函数名
-            let callbcakName = params.callback || 'callback';
+            let callbackName = params.callback || 'callback';
             //拼接参数
             let param = '?'+qs.stringify(params);
 
@@ -20,10 +17,10 @@ const jsonp = {
             //添加到最后
             document.body.appendChild(script);
             //触发回调函数
-            window[callbcakName] = function(response) {
+            window[callbackName] = function(response) {
                 if(response.code === '0'){
                     resolve(response);
-                }else{
+                }else{+
                     reject(response);
                 }
             }
@@ -34,8 +31,10 @@ const jsonp = {
             }
         })
         .finally(()=>{//最后删除script标签
-            var callback111 = document.getElementById("jsonpScript");
-            document.body.removeChild(callback111)
+            let callback111 = document.getElementById("jsonpScript");
+            if(callback111) {
+                document.body.removeChild(callback111);
+            }
         })
     }
 }
